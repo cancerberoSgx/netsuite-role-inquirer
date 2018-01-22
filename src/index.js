@@ -4,6 +4,11 @@ const { getRoles, selectRole } = require('./roles')
 
 //TODO : try / catch
 
+/**
+ * main interactive tool. By default will ask the user for email, password and to select one role from all. If email, password are given in config it will skip the corresponding step. 
+ * @param {NetSuiteRoleInquirerConfig} config 
+ * @memberof NetSuiteRoleInquirer
+ */
 async function main (config = {}) {
 
   let email = config.email || await inquirer.prompt([
@@ -30,4 +35,22 @@ async function main (config = {}) {
   return Promise.resolve({credentials, roles, role})
 }
 
-module.exports = main
+/**
+ * The main object returned when you require('netsuite-role-inquirer')
+ * @class
+ * @hideconstructor
+ */
+class NetSuiteRoleInquirer {
+}
+
+/**
+ * @typedef {Object} NetSuiteRoleInquirerConfig
+ * @property {String} email
+ * @property {String} password
+ * @property {String} molecule
+ * @property {String} vm
+ */
+
+
+
+module.exports = {main, getRoles}

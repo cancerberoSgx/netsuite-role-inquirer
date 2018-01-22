@@ -1,23 +1,11 @@
 const inquirer = require('inquirer')
 const request = require('request')
 
-function selectRole (credentials) {
-  const choices = credentials.roles.map(r => {
-    return {
-      name: r.role.name + ' @ ' + r.account.name,
-      value: r
-    }
-  })
-  return inquirer.prompt([
-    {
-      type: 'list',
-      name: 'role',
-      message: 'Select a role',
-      choices: choices
-    }
-  ])
-}
-
+/**
+ * return a promise resolved with all the roles found for given email&password and possibly molecule. config.email and config.password are mandatory here
+ * @param {NetSuiteRoleInquirerConfig} config 
+ * @memberof NetSuiteRoleInquirer
+ */
 function getRoles (credentials) {
   return new Promise((resolve, reject) => {
     let requestUrl
@@ -54,13 +42,30 @@ function getRoles (credentials) {
           if (response.error) {
             reject(response.error)
           } else {
-            // options.credentials.roles = response
             resolve(response)
           }
         }
       }
     )
   })
+}
+
+
+function selectRole (credentials) {
+  const choices = credentials.roles.map(r => {
+    return {
+      name: r.role.name + ' @ ' + r.account.name,
+      value: r
+    }
+  })
+  return inquirer.prompt([
+    {
+      type: 'list',
+      name: 'role',
+      message: 'Select a role',
+      choices: choices
+    }
+  ])
 }
 
 module.exports = { getRoles, selectRole }

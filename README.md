@@ -20,7 +20,7 @@ $ npm install netsuite-role-inquirer
 Let's assume that in your project's developer tools, at some point you want to inquire the user to select one of its roles interactively by asking mail, password and then roles:
 
 ```javascript
-const roleInquirer = require('netsuite-role-inquirer')
+const roleInquirer = require('netsuite-role-inquirer').main
 const {credentials, roles, role} = await roleInquirer()
 ```
 
@@ -29,6 +29,7 @@ Where `role` will be the role selected by the user, `roles` all the user's roles
 Another case: we want to let our user to select one of its roles, given a known email and password and molecule "sandbox": 
 
 ```javascript
+const roleInquirer = require('netsuite-role-inquirer').main
 const {credentials, roles, role} = await roleInquirer({
     email: 'known@email.com', 
     password: 'se$cret', 
