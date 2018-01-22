@@ -32,7 +32,7 @@ async function main (config = {}) {
 
   const role = await selectRole({ roles })
 
-  return Promise.resolve({credentials, roles, role})
+  return Promise.resolve({credentials, roles, role: role.role})
 }
 
 /**

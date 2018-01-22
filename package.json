@@ -1,6 +1,6 @@
 {
   "name": "netsuite-role-inquirer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Let the user select a NetSuite role interactively using the command line",
   "main": "src/index.js",
   "bin": "src/bin.js",
